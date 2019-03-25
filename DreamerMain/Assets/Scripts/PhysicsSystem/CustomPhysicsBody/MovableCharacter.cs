@@ -96,7 +96,7 @@ public class MovableCharacter : PhysicsBody
                 }
                 #endregion
 
-                LeftRightMove();
+                LeftRightMove(true);
 
                 if (KeyState(KeyInput.Jump)) 
                 {
@@ -112,10 +112,10 @@ public class MovableCharacter : PhysicsBody
                     break;
                 }
 
-                if (KeyState(KeyInput.GoDown))
-                    posState.tmpIgnoresOneWay = true;
+                if (!KeyState(KeyInput.GoDown))
+                    Sit(MovingState.Walk);
 
-                if (speedForse.x == 0.0f) ChangeCurrentState(MovingState.Stand);
+                if (speedForse.x == 0.0f) Sit(MovingState.Stand);
 
                 break;
             #endregion
@@ -282,7 +282,7 @@ public class MovableCharacter : PhysicsBody
                 switch (state)
                 {
                     case MovingState.Walk:
-                        if (sit) stateEvent.OnSitDownRunState.Invoke();
+                        if (inputs[(int)KeyInput.GoDown]) stateEvent.OnSitDownRunState.Invoke();
                         else stateEvent.OnWalkAfterStand.Invoke();
                         break;
                     case MovingState.Jump:
@@ -295,7 +295,7 @@ public class MovableCharacter : PhysicsBody
                 switch (state)
                 {
                     case MovingState.Stand:
-                        if (sit) stateEvent.OnSitDownState.Invoke();
+                        if (inputs[(int)KeyInput.GoDown]) stateEvent.OnSitDownState.Invoke();
                         else stateEvent.OnStandAfterWalk.Invoke();
                         break;
                     case MovingState.Jump:
@@ -311,7 +311,7 @@ public class MovableCharacter : PhysicsBody
                         stateEvent.OnStandAfterJump.Invoke();
                         break;
                     case MovingState.Walk:
-                        if (sit) stateEvent.OnSitDownRunState.Invoke();
+                        if (inputs[(int)KeyInput.GoDown]) stateEvent.OnSitDownRunState.Invoke();
                         else stateEvent.OnWalkAfterJump.Invoke();
                         break;
                 }
@@ -323,10 +323,13 @@ public class MovableCharacter : PhysicsBody
         currentState = state;
     }
 
-    protected void LeftRightMove()
+    protected void LeftRightMove(bool needStand = false)
     {
         if (KeyState(KeyInput.GoRight) == KeyState(KeyInput.GoLeft))
+        {
+            if (needStand) ChangeCurrentState(MovingState.Stand);
             speedForse.x = 0.0f;
+        }
         else if (KeyState(KeyInput.GoRight))
         {
             if (posState.pushesRight) speedForse.x = 0.0f;
@@ -345,16 +348,26 @@ public class MovableCharacter : PhysicsBody
     {
         if (KeyState(KeyInput.GoDown) && !sit)
         {
-            stateEvent.OnSitDownState.Invoke();
             posState.tmpIgnoresOneWay = true;
-            if (!posState.pushesTopObject) ScaleY = 0.5f;
+            if (!posState.pushesTopObject && !posState.onOneWay)
+            {
+                if (ScaleY == 1) position.y -= halfSizeY * 0.5f;
+                ScaleY = 0.5f;
+                stateEvent.OnSitDownState.Invoke();
+            }
             sit = true;
         }
         else
         {
-            ChangeCurrentState(currentState);
-            if (!KeyState(KeyInput.GoDown)) ScaleReturner();
-            sit = false;
+            if (!posState.pushedTopTile)
+            {
+                if (!KeyState(KeyInput.GoDown))
+                {
+                    ChangeCurrentState(currentState);
+                    ScaleReturner();
+                }
+                sit = false;
+            }
         }
     }
     private void ScaleReturner()
