@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/BaseResources/Scenes/Tamplates/SampleScene.unity
+- path: Assets/BaseResources/Scenes/BasePhysicsDemo.unity
   isLoaded: 1
   isActive: 1

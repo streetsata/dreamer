@@ -2,8 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OptionsEnemyController : MonoBehaviour
+public class OptionsEnemyController : OptionsUnit
 {
-    [SerializeField] private float damage;
-    public float Damage { get { return damage; } private set { } }
+
+    public override void TakeDamage()
+    {
+
+    }
+
+
+    public override void OnCollisionEnter()
+    {
+
+    }
 }

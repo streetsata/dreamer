@@ -12135,7 +12135,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89621a57ad382f04da4b8a623515111d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  strenght: 0
+  agility: 0
+  inteligence: 0
+  armour: 0
+  startDamage: 0
+  magicDamage: 0
+  mainDamage: 0
+  healthPoint: 0
+  factorDamage: 0
+  effectiveHealthPoint: 0
+  magicResist: 0
+  effectiveMagicHealthPoint: 0
+  level: 0
+  growthStrenght: 0
+  growthAgility: 0
+  growthIntelligence: 0
 --- !u!1 &1032536626
 GameObject:
   m_ObjectHideFlags: 0
@@ -24962,6 +24977,7 @@ GameObject:
   - component: {fileID: 1894374412}
   - component: {fileID: 1894374414}
   - component: {fileID: 1894374413}
+  - component: {fileID: 1894374416}
   - component: {fileID: 1894374415}
   m_Layer: 0
   m_Name: Player
@@ -25266,6 +25282,17 @@ MonoBehaviour:
   growthStrenght: 13
   growthAgiglity: 8
   growthIntelligence: 13
+--- !u!114 &1894374416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1894374411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044fd1b947690934ba1bc06c8d263286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1904739393
 GameObject:
   m_ObjectHideFlags: 0
