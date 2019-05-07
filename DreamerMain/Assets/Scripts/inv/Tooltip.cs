@@ -9,11 +9,11 @@ namespace Assets.Scripts
     {
         public Item item;
         private string data;
-        GameObject tooltip;
+        public GameObject tooltip;
 
         private void Start()
         {
-            tooltip = GameObject.Find("Tooltip");
+            //tooltip = GameObject.Find("Tooltip");
             tooltip.SetActive(false);
         }
 
