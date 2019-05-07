@@ -1,0 +1,44 @@
+[
+  {
+    "id": 0,
+    "title": "Steel Sword",
+    "value": 123,
+    "stats": {
+      "power": 50,
+      "defense": 0,
+      "vitality": 10
+    },
+    "desctiption": "Simple guardian steel sword",
+    "stackable": false,
+    "rarity": 2,
+    "slug": "sword"
+  },
+  {
+    "id": 1,
+    "title": "Small shield",
+    "value": 321,
+    "stats": {
+      "power": 5,
+      "defense": 50,
+      "vitality": 50
+    },
+    "desctiption": "simple wooden shield",
+    "stackable": true,
+    "rarity": 4,
+    "slug": "shield"
+  },
+    {
+    "id": 2,
+    "title": "Head",
+    "value": 321,
+    "stats": {
+      "power": 5,
+      "defense": 50,
+      "vitality": 50
+    },
+    "desctiption": "simple wooden shield",
+    "stackable": true,
+    "rarity": 4,
+    "slug": "Head"
+  }
+]

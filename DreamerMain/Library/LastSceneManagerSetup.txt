@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/BaseResources/Scenes/Tamplates/SampleScene.unity
+- path: Assets/!LevelResources/1/demooooo.unity
   isLoaded: 1
   isActive: 1
